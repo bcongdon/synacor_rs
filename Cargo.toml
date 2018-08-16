@@ -1,0 +1,8 @@
+[package]
+name = "synacor_rs"
+version = "0.1.0"
+authors = ["Benjamin Congdon <bencongdon96@gmail.com>"]
+
+[dependencies]
+enum_primitive = "0.1.1"
+num = "0.2.0"
