@@ -1,3 +1,5 @@
+//! A VM implementation for the Synacor Challenge.
+
 use enum_primitive::FromPrimitive;
 use ops::OP;
 use std::collections::VecDeque;
@@ -11,6 +13,7 @@ use util::u8s_to_u16;
 const NUM_REGISTERS: usize = 8;
 const DATA_SIZE: usize = 32768;
 
+/// Holds the state of the VM -- including the program counter, internal registers, stack, and memory.
 pub struct VM {
     pc: usize,
     registers: [u16; NUM_REGISTERS],
@@ -53,6 +56,7 @@ fn translate_op(op: OP) -> OpFunc {
 }
 
 impl VM {
+    /// Instantiates a new VM with empty registers, stack, and memory.
     pub fn new() -> VM {
         VM {
             pc: 0,
@@ -65,6 +69,7 @@ impl VM {
         }
     }
 
+    /// Loads a Synacor binary as a VM.
     pub fn from_file(filename: &str) -> VM {
         let mut file = File::open(filename).expect("file not found");
 
@@ -310,6 +315,7 @@ impl VM {
         translate_op(op)(self);
     }
 
+    /// Runs the VM.
     pub fn run(&mut self) {
         loop {
             let op = self.next_op();

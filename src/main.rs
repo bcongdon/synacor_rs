@@ -1,8 +1,10 @@
+//! A VM implementation for the Synacor Challenge.
+
 #![feature(range_contains)]
 
-mod ops;
+pub mod ops;
 mod util;
-mod vm;
+pub mod vm;
 
 #[macro_use]
 extern crate enum_primitive;
